@@ -4,5 +4,6 @@
         <page name='Calculator'/>
         <page name='Profile'/>
         <page name='Timeline'/>
+        <page name='Apple iOS Calculator'/>
     </pages>
 </playground>
