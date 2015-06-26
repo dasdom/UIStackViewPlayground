@@ -4,7 +4,7 @@ import UIKit
 import XCPlayground
 
 //: First we need a `hostView` to put the different elements on.
-let hostView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 110))
+let hostView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 130))
 hostView.backgroundColor = UIColor.whiteColor()
 XCPShowView("hostView", view: hostView)
 
@@ -25,9 +25,14 @@ dateLabel.font = UIFont(name: "Avenir-Book", size: 13)
 //dateLabel.backgroundColor = UIColor.grayColor()
 
 let textLabel = UILabel(frame: CGRect.zeroRect)
-textLabel.text = "I played a bit with UIStackView. I'm loving it. Many layouts will become very easy in iOS 9."
+let textWithoutLink = "I played a bit with UIStackView. Good stuff!\nExamples: "
+let linkString = "https://github.com/dasdom/UIStackViewPlayground"
+let tweetString = textWithoutLink + linkString
+let attributedString = NSMutableAttributedString(string: tweetString, attributes: [NSFontAttributeName: UIFont(name: "Avenir-Book", size: 14)!])
+attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.1, green: 0.1, blue: 1.0, alpha: 1.0), range: NSMakeRange(textWithoutLink.characters.count, linkString.characters.count))
+
+textLabel.attributedText = attributedString
 textLabel.numberOfLines = 0
-textLabel.font = UIFont(name: "Avenir-Book", size: 14)
 //textLabel.backgroundColor = UIColor.yellowColor()
 
 //: This if statement is needed, otherwise the Playground isn't executed.
