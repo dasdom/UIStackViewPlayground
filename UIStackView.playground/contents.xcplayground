@@ -5,5 +5,7 @@
         <page name='Profile'/>
         <page name='Timeline'/>
         <page name='Apple iOS Calculator'/>
+        <page name='App Store'/>
+        <page name='Mail Inbox'/>
     </pages>
 </playground>
