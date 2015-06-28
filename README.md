@@ -1,7 +1,7 @@
 # UIStackViewPlayground
 Playground to play with UIStackViews.
 
-## Apple iOS Calculator
+## iOS Calculator
 
 ![](https://raw.githubusercontent.com/dasdom/UIStackViewPlayground/master/screenShots/Screen%20Shot%202015-06-26%20at%2016.36.17.png)
 
@@ -16,3 +16,7 @@ Playground to play with UIStackViews.
 ## Timeline Post/Tweet
 
 ![](https://raw.githubusercontent.com/dasdom/UIStackViewPlayground/master/screenShots/Screen%20Shot%202015-06-26%20at%2011.34.54.png)
+
+## iOS Mail Inbox
+
+![](https://raw.githubusercontent.com/dasdom/UIStackViewPlayground/master/screenShots/Screen%20Shot%202015-06-27%20at%2017.58.13.png)
