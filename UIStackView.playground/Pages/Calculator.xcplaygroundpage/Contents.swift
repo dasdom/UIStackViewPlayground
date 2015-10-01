@@ -6,20 +6,20 @@ import XCPlayground
 //guard #available(iOS 9, *) else { fatalError() }
 
 let hostView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 400))
-hostView.backgroundColor = UIColor.lightGrayColor()
+hostView.backgroundColor = .lightGrayColor()
 XCPShowView("hostView", view: hostView)
 
 func makeButtonWithTitle(title: String, selector: String, tag: Int) -> UIButton {
   let button = UIButton(type: .System)
   button.backgroundColor = tag < 10 ? UIColor(white: 0.95, alpha: 1.0) : UIColor.whiteColor()
   button.setTitle(title, forState: .Normal)
-  button.titleLabel?.font = UIFont.boldSystemFontOfSize(16)
+  button.titleLabel?.font = .boldSystemFontOfSize(16)
   button.tag = tag
   return button
 }
 
 let makeView = { (color: UIColor) -> UIView in
-  let view = UIView(frame: CGRect.zeroRect)
+  let view = UIView(frame: .zero)
   view.translatesAutoresizingMaskIntoConstraints = false
   view.backgroundColor = color
   return view
@@ -67,12 +67,12 @@ let emptyButton  = makeButtonWithTitle("", selector: "", tag: 100)
 let leftArrowButton   = makeButtonWithTitle("←", selector: "", tag: 100)
 let rightArrowButton   = makeButtonWithTitle("→", selector: "", tag: 100)
 
-let textView = UITextView(frame: CGRect.zeroRect)
+let textView = UITextView(frame: .zero)
 textView.translatesAutoresizingMaskIntoConstraints = false
 textView.text = "1+2+3×(4-5)+sin(0.6)\n= 0.564642473395035"
 textView.font = UIFont(name: "Menlo-Bold", size: 14)
 
-let label = UILabel(frame: CGRect.zeroRect)
+let label = UILabel(frame: .zero)
 label.translatesAutoresizingMaskIntoConstraints = false
 label.text = " = 0.564642473395035"
 label.font = UIFont(name: "Menlo-Bold", size: 14)
@@ -82,58 +82,56 @@ label.backgroundColor = UIColor(white: 0.98, alpha: 1.0)
 //let blueView = makeView(.blueColor())
 //let greenView = makeView(.greenColor())
 
-if #available(iOS 9, *) {
-  let firstRow = UIStackView(arrangedSubviews: [piButton, eeButton, zeroButton, dotButton, equalButton])
-  firstRow.distribution = .FillProportionally
-  firstRow.spacing = 1
-  
-  zeroButton.widthAnchor.constraintEqualToAnchor(piButton.widthAnchor, multiplier: 2.0, constant: 1.0).active = true
-  piButton.widthAnchor.constraintEqualToAnchor(eeButton.widthAnchor).active = true
-  piButton.widthAnchor.constraintEqualToAnchor(dotButton.widthAnchor).active = true
-  piButton.widthAnchor.constraintEqualToAnchor(equalButton.widthAnchor).active = true
-  
-  let secondRow = UIStackView(arrangedSubviews: [powerButton, sqrtButton, oneButton, twoButton, threeButton, plusButton])
-  secondRow.distribution = .FillEqually
-  secondRow.spacing = 1
-  
-  
-  let thirdRow = UIStackView(arrangedSubviews: [log2Button, log10Button, fourButton, fiveButton, sixButton, minusButton])
-  thirdRow.distribution = .FillEqually
-  thirdRow.spacing = 1
-  
-  let fourthRow = UIStackView(arrangedSubviews: [expButton, lnButton, sevenButton, eighyButton, nineButton, timesButton])
-  fourthRow.distribution = .FillEqually
-  fourthRow.spacing = 1
-  
-  let fifthRow = UIStackView(arrangedSubviews: [sinButton, cosButton, tanButton, openParenthesesButton, closeParenthesesButton, divideButton])
-  fifthRow.distribution = .FillEqually
-  fifthRow.spacing = 1
-  
-  let sixthRow = UIStackView(arrangedSubviews: [secondButton, constButton, degButton, histButton, ansButton, delButton])
-  sixthRow.distribution = .FillEqually
-  sixthRow.spacing = 1
-  
-  let seventhRow = UIStackView(arrangedSubviews: [helpButton, mailButton, fourtyTwoButton, emptyButton, leftArrowButton, rightArrowButton])
-  seventhRow.distribution = .FillEqually
-  seventhRow.spacing = 1
-  
-  let buttonStackView = UIStackView(arrangedSubviews: [seventhRow, sixthRow, fifthRow, fourthRow, thirdRow, secondRow, firstRow])
-  buttonStackView.axis = .Vertical
-  buttonStackView.distribution = .FillEqually
-  buttonStackView.spacing = 1
-  
-  let hostStackView = UIStackView(arrangedSubviews: [textView, label, buttonStackView])
-  hostStackView.frame = hostView.bounds
-  hostStackView.axis = .Vertical
-  //  hostStackView.distribution = .FillEqually
-  hostStackView.spacing = 1
-  
-  textView.heightAnchor.constraintEqualToConstant(80).active = true
-  label.heightAnchor.constraintEqualToConstant(20).active = true
-  
-  hostView.addSubview(hostStackView)
-  
-  hostView
-}
+let firstRow = UIStackView(arrangedSubviews: [piButton, eeButton, zeroButton, dotButton, equalButton])
+firstRow.distribution = .FillProportionally
+firstRow.spacing = 1
+
+zeroButton.widthAnchor.constraintEqualToAnchor(piButton.widthAnchor, multiplier: 2.0, constant: 1.0).active = true
+piButton.widthAnchor.constraintEqualToAnchor(eeButton.widthAnchor).active = true
+piButton.widthAnchor.constraintEqualToAnchor(dotButton.widthAnchor).active = true
+piButton.widthAnchor.constraintEqualToAnchor(equalButton.widthAnchor).active = true
+
+let secondRow = UIStackView(arrangedSubviews: [powerButton, sqrtButton, oneButton, twoButton, threeButton, plusButton])
+secondRow.distribution = .FillEqually
+secondRow.spacing = 1
+
+
+let thirdRow = UIStackView(arrangedSubviews: [log2Button, log10Button, fourButton, fiveButton, sixButton, minusButton])
+thirdRow.distribution = .FillEqually
+thirdRow.spacing = 1
+
+let fourthRow = UIStackView(arrangedSubviews: [expButton, lnButton, sevenButton, eighyButton, nineButton, timesButton])
+fourthRow.distribution = .FillEqually
+fourthRow.spacing = 1
+
+let fifthRow = UIStackView(arrangedSubviews: [sinButton, cosButton, tanButton, openParenthesesButton, closeParenthesesButton, divideButton])
+fifthRow.distribution = .FillEqually
+fifthRow.spacing = 1
+
+let sixthRow = UIStackView(arrangedSubviews: [secondButton, constButton, degButton, histButton, ansButton, delButton])
+sixthRow.distribution = .FillEqually
+sixthRow.spacing = 1
+
+let seventhRow = UIStackView(arrangedSubviews: [helpButton, mailButton, fourtyTwoButton, emptyButton, leftArrowButton, rightArrowButton])
+seventhRow.distribution = .FillEqually
+seventhRow.spacing = 1
+
+let buttonStackView = UIStackView(arrangedSubviews: [seventhRow, sixthRow, fifthRow, fourthRow, thirdRow, secondRow, firstRow])
+buttonStackView.axis = .Vertical
+buttonStackView.distribution = .FillEqually
+buttonStackView.spacing = 1
+
+let hostStackView = UIStackView(arrangedSubviews: [textView, label, buttonStackView])
+hostStackView.frame = hostView.bounds
+hostStackView.axis = .Vertical
+//  hostStackView.distribution = .FillEqually
+hostStackView.spacing = 1
+
+textView.heightAnchor.constraintEqualToConstant(80).active = true
+label.heightAnchor.constraintEqualToConstant(20).active = true
+
+hostView.addSubview(hostStackView)
+
+hostView
 
 //: [Next](@next)
