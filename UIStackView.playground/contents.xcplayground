@@ -7,5 +7,7 @@
         <page name='Apple iOS Calculator'/>
         <page name='App Store'/>
         <page name='Mail Inbox'/>
+        <page name='Size Classes'/>
+        <page name='Springboard'/>
     </pages>
 </playground>
