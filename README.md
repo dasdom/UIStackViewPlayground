@@ -20,3 +20,7 @@ Playground to play with UIStackViews.
 ## iOS Mail Inbox
 
 ![](https://raw.githubusercontent.com/dasdom/UIStackViewPlayground/master/screenShots/Screen%20Shot%202015-06-27%20at%2017.58.13.png)
+
+## iOS Springboard
+
+![](https://raw.githubusercontent.com/dasdom/UIStackViewPlayground/master/screenShots/Screen%20Shot%202015-10-02%20at%2013.23.07.png)
