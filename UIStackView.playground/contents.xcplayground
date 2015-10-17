@@ -9,5 +9,7 @@
         <page name='Mail Inbox'/>
         <page name='Size Classes'/>
         <page name='Springboard'/>
+        <page name='Twiiter Profile'/>
+        <page name='Timeline with Quotes'/>
     </pages>
 </playground>
