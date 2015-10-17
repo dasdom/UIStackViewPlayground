@@ -166,7 +166,7 @@ let view = tableViewController.view
 
 view.frame = CGRect(x: 0, y: 0, width: 320, height: 480)
 
-XCPShowView("hostView", view: tableViewController.tableView)
+XCPShowView("Twitter with quotes", view: tableViewController.tableView)
 
 
 //: [Next](@next)
