@@ -61,6 +61,11 @@ firstColumnStackView.spacing = 10
 let secondColumnStackView = appStackViewWithArrangedViews([photosStackView, settingsStackView])
 secondColumnStackView.spacing = 10
 
+let pageControl = UIPageControl()
+pageControl.numberOfPages = 3
+
+let safariColumnStackView = appStackViewWithArrangedViews([pageControl, safariStackView])
+
 let firstRowStackView = UIStackView(arrangedSubviews: [firstColumnStackView, secondColumnStackView, mapsStackView, remindersStackView])
 firstRowStackView.distribution = .EqualSpacing
 firstRowStackView.alignment = .Top
@@ -78,7 +83,12 @@ let dockBackgroundView = UIView()
 dockBackgroundView.translatesAutoresizingMaskIntoConstraints = false
 dockBackgroundView.backgroundColor = UIColor(white: 0.35, alpha: 1.0)
 
-let mainStackView = UIStackView(arrangedSubviews: [topStackView, safariStackView])
+let infoLabel = UILabel()
+infoLabel.translatesAutoresizingMaskIntoConstraints = false
+infoLabel.textColor = .grayColor()
+infoLabel.text = "Build with UIStackViews"
+
+let mainStackView = UIStackView(arrangedSubviews: [topStackView, safariColumnStackView])
 mainStackView.translatesAutoresizingMaskIntoConstraints = false
 mainStackView.axis = .Vertical
 mainStackView.distribution = .EqualSpacing
@@ -86,6 +96,7 @@ mainStackView.alignment = .Center
 
 hostView.addSubview(dockBackgroundView)
 hostView.addSubview(mainStackView)
+hostView.addSubview(infoLabel)
 
 let views = ["stackView": mainStackView, "dockBackground": dockBackgroundView]
 var layoutConstraints = [NSLayoutConstraint]()
@@ -93,6 +104,8 @@ layoutConstraints += NSLayoutConstraint.constraintsWithVisualFormat("|[stackView
 layoutConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-3-[stackView]-3-|", options: [], metrics: nil, views: views)
 layoutConstraints += NSLayoutConstraint.constraintsWithVisualFormat("|[dockBackground]|", options: [], metrics: nil, views: views)
 layoutConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:[dockBackground(95)]|", options: [], metrics: nil, views: views)
+layoutConstraints.append(infoLabel.centerXAnchor.constraintEqualToAnchor(hostView.centerXAnchor))
+layoutConstraints.append(infoLabel.centerYAnchor.constraintEqualToAnchor(hostView.centerYAnchor))
 
 layoutConstraints.append(calendarImageView.widthAnchor.constraintEqualToConstant(60))
 layoutConstraints.append(calendarImageView.heightAnchor.constraintEqualToConstant(60))
