@@ -3,7 +3,7 @@ Playground to play with UIStackViews.
 
 ## iOS Springboard
 
-![](https://raw.githubusercontent.com/dasdom/UIStackViewPlayground/master/screenShots/Screen%20Shot%202015-10-02%20at%2013.23.07.png)
+![](https://raw.githubusercontent.com/dasdom/UIStackViewPlayground/master/screenShots/Screen%20Shot%202015-10-21%20at%2022.08.42.png)
 
 ## iOS Calculator
 
