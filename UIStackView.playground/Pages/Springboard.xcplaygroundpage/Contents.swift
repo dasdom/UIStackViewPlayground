@@ -6,7 +6,7 @@ import XCPlayground
 //: First we need a `hostView` to put the different elements on.
 let hostView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
 hostView.backgroundColor = .blackColor()
-XCPShowView("hostView", view: hostView)
+XCPlaygroundPage.currentPage.liveView = hostView
 
 let timeLabel = UILabel()
 timeLabel.text = "9:41 AM"

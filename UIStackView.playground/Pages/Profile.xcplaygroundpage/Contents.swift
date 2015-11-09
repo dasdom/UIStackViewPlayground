@@ -22,7 +22,7 @@ func socialButtonWithWhite(white: CGFloat) -> UIButton {
 //: First we need a `hostView` to put the different elements on.
 let hostView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
 hostView.backgroundColor = .lightGrayColor()
-XCPShowView("hostView", view: hostView)
+XCPlaygroundPage.currentPage.liveView = hostView
 
 /*:
 Those elements are:

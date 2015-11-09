@@ -65,9 +65,9 @@ compactView.frame = CGRectMake(300, 100, 100, 500)
 
 let showConpact = false
 if showConpact {
-    XCPShowView("Compact", view: compactView)
+    XCPlaygroundPage.currentPage.liveView = compactView
 } else {
-    XCPShowView("Regular", view: regularView)
+    XCPlaygroundPage.currentPage.liveView = regularView
 }
 
 

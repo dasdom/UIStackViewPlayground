@@ -5,7 +5,7 @@ import XCPlayground
 
 let hostView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
 hostView.backgroundColor = UIColor.whiteColor()
-XCPShowView("hostView", view: hostView)
+XCPlaygroundPage.currentPage.liveView = hostView
 
 let makeView = { (color: UIColor) -> UIView in
     let view = UIView(frame: .zero)

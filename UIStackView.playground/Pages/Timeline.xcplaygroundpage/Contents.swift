@@ -6,7 +6,7 @@ import XCPlayground
 //: First we need a `hostView` to put the different elements on.
 let hostView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 130))
 hostView.backgroundColor = .whiteColor()
-XCPShowView("hostView", view: hostView)
+XCPlaygroundPage.currentPage.liveView = hostView
 
 let avatarImageView = UIImageView(image: UIImage(named: "IMG_0345.jpg"))
 avatarImageView.clipsToBounds = true

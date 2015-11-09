@@ -112,6 +112,6 @@ let viewController = TableViewController()
 let navigationController = UINavigationController(rootViewController: viewController)
 navigationController.view.frame = CGRectMake(0, 0, 320, 480)
 
-XCPShowView("Table View", view: viewController.view)
+XCPlaygroundPage.currentPage.liveView = hostView
 
 //: [Next](@next)

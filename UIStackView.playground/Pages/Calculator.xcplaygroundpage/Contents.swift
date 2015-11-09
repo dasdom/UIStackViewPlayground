@@ -7,7 +7,7 @@ import XCPlayground
 
 let hostView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 400))
 hostView.backgroundColor = .lightGrayColor()
-XCPShowView("hostView", view: hostView)
+XCPlaygroundPage.currentPage.liveView = hostView
 
 func makeButtonWithTitle(title: String, selector: String, tag: Int) -> UIButton {
   let button = UIButton(type: .System)

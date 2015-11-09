@@ -94,7 +94,7 @@ let profileViewController = TwitterProfileViewController()
 let navigationController = UINavigationController(rootViewController: profileViewController)
 navigationController.view.frame = CGRect(x: 0, y: 0, width: 320, height: 480)
 
-XCPShowView("hostView", view: navigationController.view)
+XCPlaygroundPage.currentPage.liveView = navigationController.view
 
 
 //: [Next](@next)
