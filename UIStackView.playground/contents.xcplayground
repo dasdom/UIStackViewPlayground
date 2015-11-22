@@ -11,5 +11,6 @@
         <page name='Springboard'/>
         <page name='Twiiter Profile'/>
         <page name='Timeline with Quotes'/>
+        <page name='Story View'/>
     </pages>
 </playground>
