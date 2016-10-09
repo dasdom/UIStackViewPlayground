@@ -1,28 +1,28 @@
 //: [Previous](@previous)
 
 import UIKit
-import XCPlayground
+import PlaygroundSupport
 
 let hostView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 500))
-hostView.backgroundColor = .blackColor()
-XCPlaygroundPage.currentPage.liveView = hostView
+hostView.backgroundColor = .black
+PlaygroundPage.current.liveView = hostView
 
-func makeButtonWithTitle(title: String, selector: String, tag: Int) -> UIButton {
-    let button = UIButton(type: .System)
-    button.tintColor = UIColor.blackColor()
+func makeButtonWith(title: String, selector: String, tag: Int) -> UIButton {
+    let button = UIButton(type: .system)
+    button.tintColor = UIColor.black
     switch tag {
     case 0...10:
         button.backgroundColor = UIColor(white: 0.98, alpha: 1.0)
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 30)
     case 101...110:
-        button.backgroundColor = UIColor.orangeColor()
-        button.tintColor = .whiteColor()
+        button.backgroundColor = UIColor.orange
+        button.tintColor = .white
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 50)
     default:
         button.backgroundColor = UIColor(white: 0.90, alpha: 1.0)
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 25)
     }
-    button.setTitle(title, forState: .Normal)
+    button.setTitle(title, for: UIControlState())
     button.tag = tag
     return button
 }
@@ -34,85 +34,85 @@ let makeView = { (color: UIColor) -> UIView in
     return view
 }
 
-let zeroButton  = makeButtonWithTitle("0", selector: "", tag: 0)
-let dotButton   = makeButtonWithTitle(",", selector: "", tag: 10)
-let equalButton = makeButtonWithTitle("=", selector: "", tag: 101)
-let oneButton   = makeButtonWithTitle("1", selector: "", tag: 1)
-let twoButton   = makeButtonWithTitle("2", selector: "", tag: 2)
-let threeButton = makeButtonWithTitle("3", selector: "", tag: 3)
-let plusButton  = makeButtonWithTitle("+", selector: "", tag: 102)
-let fourButton  = makeButtonWithTitle("4", selector: "", tag: 4)
-let fiveButton  = makeButtonWithTitle("5", selector: "", tag: 5)
-let sixButton   = makeButtonWithTitle("6", selector: "", tag: 6)
-let minusButton = makeButtonWithTitle("−", selector: "", tag: 103)
-let sevenButton = makeButtonWithTitle("7", selector: "", tag: 7)
-let eighyButton = makeButtonWithTitle("8", selector: "", tag: 8)
-let nineButton  = makeButtonWithTitle("9", selector: "", tag: 9)
-let timesButton = makeButtonWithTitle("×", selector: "", tag: 104)
-let tanButton   = makeButtonWithTitle("C", selector: "", tag: 100)
-let openParenthesesButton = makeButtonWithTitle("±", selector: "", tag: 100)
-let closeParenthesesButton = makeButtonWithTitle("%", selector: "", tag: 100)
-let divideButton = makeButtonWithTitle("÷", selector: "", tag: 105)
+let zeroButton  = makeButtonWith(title: "0", selector: "", tag: 0)
+let dotButton   = makeButtonWith(title: ",", selector: "", tag: 10)
+let equalButton = makeButtonWith(title: "=", selector: "", tag: 101)
+let oneButton   = makeButtonWith(title: "1", selector: "", tag: 1)
+let twoButton   = makeButtonWith(title: "2", selector: "", tag: 2)
+let threeButton = makeButtonWith(title: "3", selector: "", tag: 3)
+let plusButton  = makeButtonWith(title: "+", selector: "", tag: 102)
+let fourButton  = makeButtonWith(title: "4", selector: "", tag: 4)
+let fiveButton  = makeButtonWith(title: "5", selector: "", tag: 5)
+let sixButton   = makeButtonWith(title: "6", selector: "", tag: 6)
+let minusButton = makeButtonWith(title: "−", selector: "", tag: 103)
+let sevenButton = makeButtonWith(title: "7", selector: "", tag: 7)
+let eighyButton = makeButtonWith(title: "8", selector: "", tag: 8)
+let nineButton  = makeButtonWith(title: "9", selector: "", tag: 9)
+let timesButton = makeButtonWith(title: "×", selector: "", tag: 104)
+let tanButton   = makeButtonWith(title: "C", selector: "", tag: 100)
+let openParenthesesButton = makeButtonWith(title: "±", selector: "", tag: 100)
+let closeParenthesesButton = makeButtonWith(title: "%", selector: "", tag: 100)
+let divideButton = makeButtonWith(title: "÷", selector: "", tag: 105)
 
 let textView = UILabel(frame: .zero)
 textView.translatesAutoresizingMaskIntoConstraints = false
 textView.text = "42"
 textView.font = UIFont(name: "HelveticaNeue-Thin", size: 60)
 //textView.backgroundColor = UIColor.redColor()
-textView.textColor = .whiteColor()
-textView.textAlignment = .Right
+textView.textColor = UIColor.white
+textView.textAlignment = .right
 
 let textHostView = UIView(frame: .zero)
-textHostView.backgroundColor = .blackColor()
+textHostView.backgroundColor = UIColor.black
 textHostView.addSubview(textView)
 
 var constraints = [NSLayoutConstraint]()
 
-constraints.append(textView.bottomAnchor.constraintEqualToAnchor(textHostView.bottomAnchor, constant: -5))
-constraints.append(textView.leadingAnchor.constraintEqualToAnchor(textHostView.leadingAnchor, constant: 5))
-constraints.append(textView.trailingAnchor.constraintEqualToAnchor(textHostView.trailingAnchor, constant: -5))
+constraints.append(textView.bottomAnchor.constraint(equalTo: textHostView.bottomAnchor, constant: -5))
+constraints.append(textView.leadingAnchor.constraint(equalTo: textHostView.leadingAnchor, constant: 5))
+constraints.append(textView.trailingAnchor.constraint(equalTo: textHostView.trailingAnchor, constant: -5))
 
-NSLayoutConstraint.activateConstraints(constraints)
+NSLayoutConstraint.activate(constraints)
 
 //let redView = makeView(.redColor())
 //let blueView = makeView(.blueColor())
 //let greenView = makeView(.greenColor())
 
 let firstRow = UIStackView(arrangedSubviews: [zeroButton, dotButton, equalButton])
-firstRow.distribution = .FillProportionally
+firstRow.distribution = .fillProportionally
 firstRow.spacing = 0.5
 
-zeroButton.widthAnchor.constraintEqualToAnchor(dotButton.widthAnchor, multiplier: 2.0, constant: 0.5).active = true
-dotButton.widthAnchor.constraintEqualToAnchor(equalButton.widthAnchor).active = true
+zeroButton.widthAnchor.constraint(equalTo: dotButton.widthAnchor, multiplier: 2.0, constant: 0.5).isActive = true
+dotButton.widthAnchor.constraint(equalTo: equalButton.widthAnchor).isActive = true
 
 let secondRow = UIStackView(arrangedSubviews: [oneButton, twoButton, threeButton, plusButton])
-secondRow.distribution = .FillEqually
+secondRow.distribution = .fillEqually
 secondRow.spacing = 0.5
 
 let thirdRow = UIStackView(arrangedSubviews: [fourButton, fiveButton, sixButton, minusButton])
-thirdRow.distribution = .FillEqually
+thirdRow.distribution = .fillEqually
 thirdRow.spacing = 0.5
 
 let fourthRow = UIStackView(arrangedSubviews: [sevenButton, eighyButton, nineButton, timesButton])
-fourthRow.distribution = .FillEqually
+fourthRow.distribution = .fillEqually
 fourthRow.spacing = 0.5
 
 let fifthRow = UIStackView(arrangedSubviews: [tanButton, openParenthesesButton, closeParenthesesButton, divideButton])
-fifthRow.distribution = .FillEqually
+fifthRow.distribution = .fillEqually
 fifthRow.spacing = 0.5
 
 let buttonStackView = UIStackView(arrangedSubviews: [fifthRow, fourthRow, thirdRow, secondRow, firstRow])
-buttonStackView.axis = .Vertical
-buttonStackView.distribution = .FillEqually
+buttonStackView.axis = .vertical
+buttonStackView.distribution = .fillEqually
 buttonStackView.spacing = 0.5
 
 let hostStackView = UIStackView(arrangedSubviews: [textHostView, buttonStackView])
 hostStackView.frame = hostView.bounds
-hostStackView.axis = .Vertical
+hostStackView.axis = .vertical
 //  hostStackView.distribution = .FillEqually
 hostStackView.spacing = 0.5
 
-textHostView.heightAnchor.constraintEqualToConstant(150).active = true
+textHostView.heightAnchor.constraint(equalToConstant: 150).isActive = true
 
 hostView.addSubview(hostStackView)
 

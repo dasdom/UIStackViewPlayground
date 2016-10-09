@@ -1,21 +1,21 @@
 //: [Previous](@previous)
 
 import UIKit
-import XCPlayground
+import PlaygroundSupport
 
 class TableViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.registerClass(MessageCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(MessageCell.self, forCellReuseIdentifier: "Cell")
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! MessageCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MessageCell
         
         cell.senderLabel.text = "Hans Wurst"
         cell.subjectLabel.text = "Check out my new wurst"
@@ -25,7 +25,7 @@ class TableViewController : UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70;
     }
 }
@@ -40,12 +40,12 @@ class MessageCell : UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         senderLabel = UILabel(frame: .zero)
         //      senderLabel.backgroundColor = UIColor.yellowColor()
-        senderLabel.font = .boldSystemFontOfSize(13)
+        senderLabel.font = .boldSystemFont(ofSize: 13)
         
         dateLabel = UILabel(frame: .zero)
         //      dateLabel.backgroundColor = UIColor.brownColor()
-        dateLabel.font = .systemFontOfSize(12)
-        dateLabel.textColor = .grayColor()
+        dateLabel.font = .systemFont(ofSize: 12)
+        dateLabel.textColor = UIColor.gray
         
         let disclosureIndicatorImageView = UIImageView(image: UIImage(named: "disclosureIndicator"))
         disclosureIndicatorImageView.clipsToBounds = true
@@ -53,27 +53,27 @@ class MessageCell : UITableViewCell {
         
         subjectLabel = UILabel(frame: .zero)
         //      subjectLabel.backgroundColor = UIColor.redColor()
-        subjectLabel.font = .systemFontOfSize(12)
+        subjectLabel.font = .systemFont(ofSize: 12)
         
         previewLabel = UILabel(frame: .zero)
         //      previewLabel.backgroundColor = UIColor.greenColor()
-        previewLabel.font = .systemFontOfSize(12)
-        previewLabel.textColor = .grayColor()
+        previewLabel.font = .systemFont(ofSize: 12)
+        previewLabel.textColor = UIColor.gray
         previewLabel.numberOfLines = 2
         
         unreadIndicatorView = UIView(frame: .zero)
         unreadIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-        unreadIndicatorView.backgroundColor = .blueColor()
+        unreadIndicatorView.backgroundColor = UIColor.blue
         unreadIndicatorView.layer.cornerRadius = 5
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         let senderAndDateStackView = UIStackView(arrangedSubviews: [senderLabel, dateLabel, disclosureIndicatorImageView])
-        senderAndDateStackView.alignment = .Center
+        senderAndDateStackView.alignment = .center
         senderAndDateStackView.spacing = 5
         
         let textStackView = UIStackView(arrangedSubviews: [senderAndDateStackView, subjectLabel, previewLabel])
-        textStackView.axis = .Vertical
+        textStackView.axis = .vertical
         //      textStackView.spacing = 2
         
         let unreadIndicatorHostView = UIView(frame: .zero)
@@ -82,24 +82,24 @@ class MessageCell : UITableViewCell {
         
         let mainStackView = UIStackView(arrangedSubviews: [unreadIndicatorHostView, textStackView])
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
-        mainStackView.alignment = .Top
+        mainStackView.alignment = .top
         mainStackView.spacing = 5
         contentView.addSubview(mainStackView)
         
         let views = ["mainStackView": mainStackView]
         var constraints = [NSLayoutConstraint]()
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("|-5-[mainStackView]-10-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-5-[mainStackView]-5-|", options: [], metrics: nil, views: views)
-        constraints.append(unreadIndicatorHostView.widthAnchor.constraintEqualToAnchor(senderLabel.heightAnchor))
-        constraints.append(unreadIndicatorHostView.heightAnchor.constraintEqualToAnchor(senderLabel.heightAnchor))
-        constraints.append(unreadIndicatorView.widthAnchor.constraintEqualToConstant(10))
-        constraints.append(disclosureIndicatorImageView.heightAnchor.constraintEqualToConstant(10))
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "|-5-[mainStackView]-10-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[mainStackView]-5-|", options: [], metrics: nil, views: views)
+        constraints.append(unreadIndicatorHostView.widthAnchor.constraint(equalTo: senderLabel.heightAnchor))
+        constraints.append(unreadIndicatorHostView.heightAnchor.constraint(equalTo: senderLabel.heightAnchor))
+        constraints.append(unreadIndicatorView.widthAnchor.constraint(equalToConstant: 10))
+        constraints.append(disclosureIndicatorImageView.heightAnchor.constraint(equalToConstant: 10))
         
-        constraints.append(unreadIndicatorView.heightAnchor.constraintEqualToConstant(10))
-        constraints.append(unreadIndicatorView.centerXAnchor.constraintEqualToAnchor(unreadIndicatorHostView.centerXAnchor))
-        constraints.append(unreadIndicatorView.centerYAnchor.constraintEqualToAnchor(unreadIndicatorHostView.centerYAnchor))
+        constraints.append(unreadIndicatorView.heightAnchor.constraint(equalToConstant: 10))
+        constraints.append(unreadIndicatorView.centerXAnchor.constraint(equalTo: unreadIndicatorHostView.centerXAnchor))
+        constraints.append(unreadIndicatorView.centerYAnchor.constraint(equalTo: unreadIndicatorHostView.centerYAnchor))
         
-        NSLayoutConstraint.activateConstraints(constraints)
+        NSLayoutConstraint.activate(constraints)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -110,8 +110,8 @@ class MessageCell : UITableViewCell {
 let viewController = TableViewController()
 
 let navigationController = UINavigationController(rootViewController: viewController)
-navigationController.view.frame = CGRectMake(0, 0, 320, 480)
+navigationController.view.frame = CGRect(x: 0, y: 0, width: 320, height: 480)
 
-XCPlaygroundPage.currentPage.liveView = hostView
+PlaygroundPage.current.liveView = navigationController.view
 
 //: [Next](@next)

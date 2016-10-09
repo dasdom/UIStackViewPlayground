@@ -1,17 +1,17 @@
 //: [Previous](@previous)
 
 import UIKit
-import XCPlayground
+import PlaygroundSupport
 
 //: First we need a `hostView` to put the different elements on.
 let hostView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 130))
-hostView.backgroundColor = .whiteColor()
-XCPlaygroundPage.currentPage.liveView = hostView
+hostView.backgroundColor = .white
+PlaygroundPage.current.liveView = hostView
 
 let avatarImageView = UIImageView(image: UIImage(named: "IMG_0345.jpg"))
 avatarImageView.clipsToBounds = true
-avatarImageView.backgroundColor = .yellowColor()
-avatarImageView.contentMode = .ScaleAspectFill
+avatarImageView.backgroundColor = .yellow
+avatarImageView.contentMode = .scaleAspectFill
 avatarImageView.layer.cornerRadius = 5
 
 let handleLabel = UILabel(frame: .zero)
@@ -39,26 +39,26 @@ let metaStackView = UIStackView(arrangedSubviews: [handleLabel, dateLabel])
 metaStackView.spacing = 10
 
 let textStackView = UIStackView(arrangedSubviews: [metaStackView, textLabel])
-textStackView.axis = .Vertical
+textStackView.axis = .vertical
 textStackView.spacing = 5
 
 let mainStackView = UIStackView(arrangedSubviews: [avatarImageView, textStackView])
 mainStackView.translatesAutoresizingMaskIntoConstraints = false
-mainStackView.alignment = .Top
+mainStackView.alignment = .top
 mainStackView.spacing = 10
 
 hostView.addSubview(mainStackView)
 
 var constraints = [NSLayoutConstraint]()
-constraints.append(avatarImageView.widthAnchor.constraintEqualToConstant(60))
-constraints.append(avatarImageView.heightAnchor.constraintEqualToConstant(60))
+constraints.append(avatarImageView.widthAnchor.constraint(equalToConstant: 60))
+constraints.append(avatarImageView.heightAnchor.constraint(equalToConstant: 60))
 
-constraints.append(mainStackView.topAnchor.constraintEqualToAnchor(hostView.topAnchor, constant: 10))
-constraints.append(mainStackView.bottomAnchor.constraintEqualToAnchor(hostView.bottomAnchor, constant: -10))
-constraints.append(mainStackView.leadingAnchor.constraintEqualToAnchor(hostView.leadingAnchor, constant: 10))
-constraints.append(mainStackView.trailingAnchor.constraintEqualToAnchor(hostView.trailingAnchor, constant: -10))
+constraints.append(mainStackView.topAnchor.constraint(equalTo: hostView.topAnchor, constant: 10))
+constraints.append(mainStackView.bottomAnchor.constraint(equalTo: hostView.bottomAnchor, constant: -10))
+constraints.append(mainStackView.leadingAnchor.constraint(equalTo: hostView.leadingAnchor, constant: 10))
+constraints.append(mainStackView.trailingAnchor.constraint(equalTo: hostView.trailingAnchor, constant: -10))
 
-NSLayoutConstraint.activateConstraints(constraints)
+NSLayoutConstraint.activate(constraints)
 
 
 //: [Next](@next)
