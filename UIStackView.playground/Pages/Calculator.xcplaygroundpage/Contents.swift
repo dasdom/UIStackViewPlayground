@@ -13,7 +13,7 @@ PlaygroundPage.current.liveView = hostView
 func makeButtonWith(title: String, selector: String, tag: Int) -> UIButton {
   let button = UIButton(type: .system)
   button.backgroundColor = tag < 10 ? UIColor(white: 0.95, alpha: 1.0) : UIColor.white
-  button.setTitle(title, for: UIControlState())
+  button.setTitle(title, for: UIControl.State.normal)
   button.titleLabel?.font = .boldSystemFont(ofSize: 16)
   button.tag = tag
   return button

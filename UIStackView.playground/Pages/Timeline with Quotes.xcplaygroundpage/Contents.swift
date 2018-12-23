@@ -15,7 +15,7 @@ class TwitterTableViewController: UITableViewController {
     tableView.register(TweetCodeCell.self, forCellReuseIdentifier: "TweetCell")
 
     tableView.estimatedRowHeight = 80
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
   }
   
   override func didReceiveMemoryWarning() {
@@ -77,7 +77,7 @@ class TweetCodeCell: UITableViewCell {
     }
   }
   
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     
     avatarImageView = UIImageView()
     avatarImageView.backgroundColor = UIColor.brown
@@ -141,19 +141,28 @@ class TweetCodeCell: UITableViewCell {
     contentView.addSubview(stackView)
     quoteHostStackView.insertSubview(quoteStackViewBackgroundView, at: 0)
     
-    let views = ["stackView": stackView, "quoteBackground": quoteStackViewBackgroundView, "quoteLabel": quoteLabel, "quoteStackView": quoteStackView]
-    var layoutConstraints = [NSLayoutConstraint]()
-    layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "|-10-[stackView]-|", options: [], metrics: nil, views: views)
-    layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[stackView]-(10@751)-|", options: [], metrics: nil, views: views)
-    layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "|[quoteBackground]|", options: [], metrics: nil, views: views)
-    layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[quoteBackground]|", options: [], metrics: nil, views: views)
-    quotePaddingConstraints +=  NSLayoutConstraint.constraints(withVisualFormat: "|-10-[quoteLabel]-10-|", options: [], metrics: nil, views: views)
-    layoutConstraints.append(avatarImageView.widthAnchor.constraint(equalToConstant: 60))
-    layoutConstraints.append(avatarImageView.heightAnchor.constraint(equalToConstant: 60))
-    layoutConstraints.append(quoteLabel.trailingAnchor.constraint(equalTo: quoteHandle.trailingAnchor))
-    layoutConstraints.append(quoteLabel.leadingAnchor.constraint(equalTo: quoteHandle.leadingAnchor))
-    layoutConstraints += quotePaddingConstraints
-    NSLayoutConstraint.activate(layoutConstraints)
+    let stackViewBottomConstraint = stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+    stackViewBottomConstraint.priority = UILayoutPriority(rawValue: 751)
+
+    NSLayoutConstraint.activate(
+      [
+      stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+      stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+      stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+      stackViewBottomConstraint,
+      quoteStackViewBackgroundView.leadingAnchor.constraint(equalTo: quoteHostStackView.leadingAnchor),
+      quoteStackViewBackgroundView.trailingAnchor.constraint(equalTo: quoteHostStackView.trailingAnchor),
+      quoteStackViewBackgroundView.topAnchor.constraint(equalTo: quoteHostStackView.topAnchor),
+      quoteStackViewBackgroundView.bottomAnchor.constraint(equalTo: quoteHostStackView.bottomAnchor),
+      quoteLabel.leadingAnchor.constraint(equalTo: quoteStackView.leadingAnchor, constant: 10),
+      quoteLabel.trailingAnchor.constraint(equalTo: quoteStackView.trailingAnchor, constant: -10),
+      
+      avatarImageView.widthAnchor.constraint(equalToConstant: 60),
+      avatarImageView.heightAnchor.constraint(equalToConstant: 60),
+      quoteLabel.trailingAnchor.constraint(equalTo: quoteHandle.trailingAnchor),
+      quoteLabel.leadingAnchor.constraint(equalTo: quoteHandle.leadingAnchor),
+      ])
+    NSLayoutConstraint.activate(quotePaddingConstraints)
   }
   
   required init?(coder aDecoder: NSCoder) {

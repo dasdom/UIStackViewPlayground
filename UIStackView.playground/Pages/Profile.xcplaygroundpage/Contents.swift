@@ -35,16 +35,16 @@ headerImageView.contentMode = .scaleAspectFill
 
 //: - different social button (App.net, Twitter, StackOverflow, Github)
 let adnButton = socialButtonWith(white: 0.2)
-adnButton.setTitle("A", for: UIControlState())
+adnButton.setTitle("A", for: UIControl.State.normal)
 
 let twitterButton = socialButtonWith(white: 0.3)
-twitterButton.setTitle("t", for: UIControlState())
+twitterButton.setTitle("t", for: UIControl.State.normal)
 
 let stackOverflowButton = socialButtonWith(white: 0.4)
-stackOverflowButton.setTitle("S", for: UIControlState())
+stackOverflowButton.setTitle("S", for: UIControl.State.normal)
 
 let githubButton = socialButtonWith(white: 0.5)
-githubButton.setTitle("g", for: UIControlState())
+githubButton.setTitle("g", for: UIControl.State.normal)
 
 //: - avatar image
 let avatarImageView = UIImageView(frame: .zero)
@@ -120,20 +120,17 @@ socialButtonStackView.heightAnchor.constraint(equalToConstant: socialButtonStack
 avatarImageView.widthAnchor.constraint(equalToConstant: avatarImageHeight).isActive = true
 avatarImageView.heightAnchor.constraint(equalToConstant: avatarImageHeight).isActive = true
 
-let views = ["stackView": mainStackView, "headerStackView": headerStackView, "bio": bioLabel]
-NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "|[headerStackView]|", options: [], metrics: nil, views: views))
-NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "|-10-[bio]", options: [], metrics: nil, views: views))
-NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "|[stackView]|", options: [], metrics: nil, views: views))
-NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]", options: [], metrics: nil, views: views))
+NSLayoutConstraint.activate(
+  [
+    mainStackView.leadingAnchor.constraint(equalTo: hostView.leadingAnchor),
+    mainStackView.trailingAnchor.constraint(equalTo: hostView.trailingAnchor),
+    mainStackView.topAnchor.constraint(equalTo: hostView.topAnchor),
+    bioLabel.leadingAnchor.constraint(equalTo: personInfoStackView.leadingAnchor, constant:10),
+    ])
 
 headerImageView.image = UIImage(named: "DSC_1165.jpg")
 avatarImageView.image = UIImage(named: "IMG_0345.jpg")
 
 hostView
-
-
-let array = [1,2,3,4,5,6]
-let sum = array.reduce(0, { $0 + $1 })
-sum
 
 //: [Next](@next)

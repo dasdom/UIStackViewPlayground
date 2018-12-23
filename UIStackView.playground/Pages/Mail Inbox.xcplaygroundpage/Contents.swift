@@ -37,7 +37,7 @@ class MessageCell : UITableViewCell {
     let previewLabel: UILabel
     let unreadIndicatorView: UIView
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         senderLabel = UILabel(frame: .zero)
         //      senderLabel.backgroundColor = UIColor.yellowColor()
         senderLabel.font = .boldSystemFont(ofSize: 13)
@@ -63,7 +63,7 @@ class MessageCell : UITableViewCell {
         
         unreadIndicatorView = UIView(frame: .zero)
         unreadIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-        unreadIndicatorView.backgroundColor = UIColor.blue
+        unreadIndicatorView.backgroundColor = UIColor(red: 0.3, green: 0.4, blue: 0.9, alpha: 1.0)
         unreadIndicatorView.layer.cornerRadius = 5
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -85,21 +85,21 @@ class MessageCell : UITableViewCell {
         mainStackView.alignment = .top
         mainStackView.spacing = 5
         contentView.addSubview(mainStackView)
-        
-        let views = ["mainStackView": mainStackView]
-        var constraints = [NSLayoutConstraint]()
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "|-5-[mainStackView]-10-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[mainStackView]-5-|", options: [], metrics: nil, views: views)
-        constraints.append(unreadIndicatorHostView.widthAnchor.constraint(equalTo: senderLabel.heightAnchor))
-        constraints.append(unreadIndicatorHostView.heightAnchor.constraint(equalTo: senderLabel.heightAnchor))
-        constraints.append(unreadIndicatorView.widthAnchor.constraint(equalToConstant: 10))
-        constraints.append(disclosureIndicatorImageView.heightAnchor.constraint(equalToConstant: 10))
-        
-        constraints.append(unreadIndicatorView.heightAnchor.constraint(equalToConstant: 10))
-        constraints.append(unreadIndicatorView.centerXAnchor.constraint(equalTo: unreadIndicatorHostView.centerXAnchor))
-        constraints.append(unreadIndicatorView.centerYAnchor.constraint(equalTo: unreadIndicatorHostView.centerYAnchor))
-        
-        NSLayoutConstraint.activate(constraints)
+    
+    NSLayoutConstraint.activate(
+      [
+      mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+      mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+      mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+      mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+      unreadIndicatorHostView.widthAnchor.constraint(equalTo: senderLabel.heightAnchor),
+      unreadIndicatorHostView.heightAnchor.constraint(equalTo: senderLabel.heightAnchor),
+      unreadIndicatorView.widthAnchor.constraint(equalToConstant: 10),
+      disclosureIndicatorImageView.heightAnchor.constraint(equalToConstant: 10),
+      unreadIndicatorView.heightAnchor.constraint(equalToConstant: 10),
+      unreadIndicatorView.centerXAnchor.constraint(equalTo: unreadIndicatorHostView.centerXAnchor),
+      unreadIndicatorView.centerYAnchor.constraint(equalTo: unreadIndicatorHostView.centerYAnchor),
+      ])
     }
     
     required init(coder aDecoder: NSCoder) {

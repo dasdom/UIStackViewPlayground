@@ -33,20 +33,18 @@ stackView.spacing = 10
 
 hostView.addSubview(stackView)
 
-let views = ["stackView": stackView]
-var layoutConstraints: [NSLayoutConstraint] = []
-layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "|[stackView]|", options: [], metrics: nil, views: views)
-layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]", options: [], metrics: nil, views: views)
-layoutConstraints.append(headerLabel.leadingAnchor.constraint(equalTo: topStackView.leadingAnchor, constant: 10))
-layoutConstraints.append(headerLabel.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor, constant: 10))
-
 let imageSize = image!.size
 let imageHeight = hostView.frame.size.width * imageSize.height / imageSize.width
-layoutConstraints.append(imageView.heightAnchor.constraint(equalToConstant: imageHeight))
-
-layoutConstraints.append(bottomLabel.leadingAnchor.constraint(equalTo: bottomStackView.leadingAnchor, constant: 10))
-layoutConstraints.append(bottomLabel.trailingAnchor.constraint(equalTo: bottomStackView.trailingAnchor, constant: 10))
-
-NSLayoutConstraint.activate(layoutConstraints)
+NSLayoutConstraint.activate(
+  [
+  stackView.leadingAnchor.constraint(equalTo: hostView.leadingAnchor),
+  stackView.trailingAnchor.constraint(equalTo: hostView.trailingAnchor),
+  stackView.topAnchor.constraint(equalTo: hostView.topAnchor),
+  headerLabel.leadingAnchor.constraint(equalTo: topStackView.leadingAnchor, constant: 10),
+  headerLabel.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor, constant: 10),
+  imageView.heightAnchor.constraint(equalToConstant: imageHeight),
+  bottomLabel.leadingAnchor.constraint(equalTo: bottomStackView.leadingAnchor, constant: 10),
+  bottomLabel.trailingAnchor.constraint(equalTo: bottomStackView.trailingAnchor, constant: 10),
+  ])
 
 //: [Next](@next)

@@ -98,30 +98,34 @@ hostView.addSubview(dockBackgroundView)
 hostView.addSubview(mainStackView)
 hostView.addSubview(infoLabel)
 
-let views = ["stackView": mainStackView, "dockBackground": dockBackgroundView]
-var layoutConstraints = [NSLayoutConstraint]()
-layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "|[stackView]|", options: [], metrics: nil, views: views)
-layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-3-[stackView]-3-|", options: [], metrics: nil, views: views)
-layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "|[dockBackground]|", options: [], metrics: nil, views: views)
-layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[dockBackground(95)]|", options: [], metrics: nil, views: views)
-layoutConstraints.append(infoLabel.centerXAnchor.constraint(equalTo: hostView.centerXAnchor))
-layoutConstraints.append(infoLabel.centerYAnchor.constraint(equalTo: hostView.centerYAnchor))
-
-layoutConstraints.append(calendarImageView.widthAnchor.constraint(equalToConstant: 60))
-layoutConstraints.append(calendarImageView.heightAnchor.constraint(equalToConstant: 60))
-layoutConstraints.append(photosImageView.widthAnchor.constraint(equalToConstant: 60))
-layoutConstraints.append(photosImageView.heightAnchor.constraint(equalToConstant: 60))
-layoutConstraints.append(mapsImageView.widthAnchor.constraint(equalToConstant: 60))
-layoutConstraints.append(mapsImageView.heightAnchor.constraint(equalToConstant: 60))
-layoutConstraints.append(remindersImageView.widthAnchor.constraint(equalToConstant: 60))
-layoutConstraints.append(remindersImageView.heightAnchor.constraint(equalToConstant: 60))
-layoutConstraints.append(healthImageView.widthAnchor.constraint(equalToConstant: 60))
-layoutConstraints.append(healthImageView.heightAnchor.constraint(equalToConstant: 60))
-layoutConstraints.append(settingsImageView.widthAnchor.constraint(equalToConstant: 60))
-layoutConstraints.append(settingsImageView.heightAnchor.constraint(equalToConstant: 60))
-layoutConstraints.append(safariImageView.widthAnchor.constraint(equalToConstant: 60))
-layoutConstraints.append(safariImageView.heightAnchor.constraint(equalToConstant: 60))
-
-NSLayoutConstraint.activate(layoutConstraints)
+NSLayoutConstraint.activate(
+  [
+    mainStackView.leadingAnchor.constraint(equalTo: hostView.leadingAnchor),
+    mainStackView.trailingAnchor.constraint(equalTo: hostView.trailingAnchor),
+    mainStackView.topAnchor.constraint(equalTo: hostView.topAnchor, constant: 3),
+    mainStackView.bottomAnchor.constraint(equalTo: hostView.bottomAnchor, constant: -3),
+    dockBackgroundView.leadingAnchor.constraint(equalTo: hostView.leadingAnchor),
+    dockBackgroundView.trailingAnchor.constraint(equalTo: hostView.trailingAnchor),
+    dockBackgroundView.bottomAnchor.constraint(equalTo: hostView.bottomAnchor),
+    dockBackgroundView.heightAnchor.constraint(equalToConstant: 95),
+    infoLabel.centerXAnchor.constraint(equalTo: hostView.centerXAnchor),
+    infoLabel.centerYAnchor.constraint(equalTo: hostView.centerYAnchor),
+    
+    calendarImageView.widthAnchor.constraint(equalToConstant: 60),
+    calendarImageView.heightAnchor.constraint(equalToConstant: 60),
+    
+    photosImageView.widthAnchor.constraint(equalToConstant: 60),
+    photosImageView.heightAnchor.constraint(equalToConstant: 60),
+    mapsImageView.widthAnchor.constraint(equalToConstant: 60),
+    mapsImageView.heightAnchor.constraint(equalToConstant: 60),
+    remindersImageView.widthAnchor.constraint(equalToConstant: 60),
+    remindersImageView.heightAnchor.constraint(equalToConstant: 60),
+    healthImageView.widthAnchor.constraint(equalToConstant: 60),
+    healthImageView.heightAnchor.constraint(equalToConstant: 60),
+    settingsImageView.widthAnchor.constraint(equalToConstant: 60),
+    settingsImageView.heightAnchor.constraint(equalToConstant: 60),
+    safariImageView.widthAnchor.constraint(equalToConstant: 60),
+    safariImageView.heightAnchor.constraint(equalToConstant: 60),
+  ])
 
 //: [Next](@next)

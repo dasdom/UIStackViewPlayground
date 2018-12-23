@@ -22,7 +22,7 @@ func makeButtonWith(title: String, selector: String, tag: Int) -> UIButton {
         button.backgroundColor = UIColor(white: 0.90, alpha: 1.0)
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 25)
     }
-    button.setTitle(title, for: UIControlState())
+    button.setTitle(title, for: UIControl.State.normal)
     button.tag = tag
     return button
 }
@@ -66,13 +66,12 @@ let textHostView = UIView(frame: .zero)
 textHostView.backgroundColor = UIColor.black
 textHostView.addSubview(textView)
 
-var constraints = [NSLayoutConstraint]()
-
-constraints.append(textView.bottomAnchor.constraint(equalTo: textHostView.bottomAnchor, constant: -5))
-constraints.append(textView.leadingAnchor.constraint(equalTo: textHostView.leadingAnchor, constant: 5))
-constraints.append(textView.trailingAnchor.constraint(equalTo: textHostView.trailingAnchor, constant: -5))
-
-NSLayoutConstraint.activate(constraints)
+NSLayoutConstraint.activate(
+  [
+    textView.bottomAnchor.constraint(equalTo: textHostView.bottomAnchor, constant: -5),
+    textView.leadingAnchor.constraint(equalTo: textHostView.leadingAnchor, constant: 5),
+    textView.trailingAnchor.constraint(equalTo: textHostView.trailingAnchor, constant: -5),
+    ])
 
 //let redView = makeView(.redColor())
 //let blueView = makeView(.blueColor())
@@ -82,8 +81,11 @@ let firstRow = UIStackView(arrangedSubviews: [zeroButton, dotButton, equalButton
 firstRow.distribution = .fillProportionally
 firstRow.spacing = 0.5
 
-zeroButton.widthAnchor.constraint(equalTo: dotButton.widthAnchor, multiplier: 2.0, constant: 0.5).isActive = true
-dotButton.widthAnchor.constraint(equalTo: equalButton.widthAnchor).isActive = true
+NSLayoutConstraint.activate(
+  [
+    zeroButton.widthAnchor.constraint(equalTo: dotButton.widthAnchor, multiplier: 2.0, constant: 0.5),
+    dotButton.widthAnchor.constraint(equalTo: equalButton.widthAnchor)
+  ])
 
 let secondRow = UIStackView(arrangedSubviews: [oneButton, twoButton, threeButton, plusButton])
 secondRow.distribution = .fillEqually

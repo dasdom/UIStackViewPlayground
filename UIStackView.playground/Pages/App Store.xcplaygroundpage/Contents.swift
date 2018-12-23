@@ -21,15 +21,15 @@ iconImageView.clipsToBounds = true
 let appNameLabel = UILabel(frame: .zero)
 appNameLabel.font = UIFont.boldSystemFont(ofSize: 15)
 appNameLabel.text = "Fojusi"
-appNameLabel.backgroundColor = UIColor.yellow
+//appNameLabel.backgroundColor = UIColor.yellow
 
 let devNameLabel = UILabel(frame: .zero)
 devNameLabel.font = UIFont.systemFont(ofSize: 13)
 devNameLabel.text = "Dominik Hauser"
-devNameLabel.backgroundColor = UIColor.red
+//devNameLabel.backgroundColor = UIColor.red
 
 let buyButton = UIButton(type: .system)
-buyButton.setTitle("0,99 €", for: UIControlState())
+buyButton.setTitle("0,99 €", for: UIControl.State.normal)
 buyButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
 buyButton.layer.cornerRadius = 5
 buyButton.layer.borderColor = buyButton.tintColor.cgColor
@@ -43,7 +43,7 @@ metaDataStackView.axis = .vertical
 
 let leftHeaderStackView = UIStackView(arrangedSubviews: [metaDataStackView, buyButton])
 leftHeaderStackView.axis = .vertical
-leftHeaderStackView.distribution = UIStackViewDistribution.equalCentering
+leftHeaderStackView.distribution = UIStackView.Distribution.equalCentering
 
 let headerStackView = UIStackView(arrangedSubviews: [iconImageView, leftHeaderStackView])
 headerStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,15 +56,17 @@ let mainStackView = UIStackView(arrangedSubviews: [headerView])
 mainStackView.translatesAutoresizingMaskIntoConstraints = false
 hostView.addSubview(mainStackView)
 
-let views = ["mainStackView": mainStackView, "headerStackView": headerStackView]
-var constraints = [NSLayoutConstraint]()
-constraints += NSLayoutConstraint.constraints(withVisualFormat: "|[mainStackView]|", options: [], metrics: nil, views: views)
-constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[mainStackView]|", options: [], metrics: nil, views: views)
-constraints += NSLayoutConstraint.constraints(withVisualFormat: "|-10-[headerStackView]-10-|", options: [], metrics: nil, views: views)
-constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[headerStackView]", options: [], metrics: nil, views: views)
-constraints.append(iconImageView.widthAnchor.constraint(equalToConstant: 100))
-constraints.append(iconImageView.heightAnchor.constraint(equalToConstant: 100))
-NSLayoutConstraint.activate(constraints)
-
+NSLayoutConstraint.activate(
+  [
+  mainStackView.leadingAnchor.constraint(equalTo: hostView.leadingAnchor),
+  mainStackView.trailingAnchor.constraint(equalTo: hostView.trailingAnchor),
+  mainStackView.topAnchor.constraint(equalTo: hostView.topAnchor),
+  mainStackView.bottomAnchor.constraint(equalTo: hostView.bottomAnchor),
+  headerStackView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 10),
+  headerStackView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -10),
+  headerStackView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10),
+  iconImageView.widthAnchor.constraint(equalToConstant: 100),
+  iconImageView.heightAnchor.constraint(equalToConstant: 100),
+  ])
 
 //: [Next](@next)
